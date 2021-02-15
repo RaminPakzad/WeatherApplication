@@ -16,7 +16,7 @@ form [OpenWeather](https://openweathermap.org/) and stores in your local databas
 As this application uses [OpenWeather](https://openweathermap.org/), first you need to generate an API key for yourself.
 
 - Generate a OpenWeather API key on [OpenWeather](https://openweathermap.org/appid)
-- Place the generated API key in docker-variables.env file as the value for WEATHER_API_ID, like this:
+- Place the generated API key in .env file as the value for WEATHER_API_ID, like this:
 
   WEATHER_API_ID={your api key}
 

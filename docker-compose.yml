@@ -3,8 +3,6 @@ services:
   postgres:
     image: "postgres:13"
     container_name: "postgres"
-    env_file:
-      - docker-variables.env
     ports:
       - ${DB_PORT}:${DB_PORT}
     environment:
@@ -13,8 +11,6 @@ services:
       - POSTGRES_DB=${WEATHER_DB_NAME}
   weather:
     container_name: weather
-    env_file:
-      - docker-variables.env
     build:
       context: ""
       dockerfile: Dockerfile
@@ -25,3 +21,10 @@ services:
       - 8085
     ports:
       - 8085:8085
+    environment:
+      - WEATHER_DB_HOST=${WEATHER_DB_HOST}
+      - WEATHER_DB_PORT=${WEATHER_DB_PORT}
+      - WEATHER_DB_NAME=${WEATHER_DB_NAME}
+      - WEATHER_DB_USERNAME=${WEATHER_DB_USERNAME}
+      - WEATHER_DB_PASSWORD=${WEATHER_DB_PASSWORD}
+      - WEATHER_API_ID=${WEATHER_API_ID}
