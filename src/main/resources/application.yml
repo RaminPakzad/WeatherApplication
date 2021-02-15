@@ -1,0 +1,32 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: weather-application
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${WEATHER_DB_USERNAME}
+    password: ${WEATHER_DB_PASSWORD}
+    url: jdbc:postgresql://${WEATHER_DB_HOST}:${WEATHER_DB_PORT}/${WEATHER_DB_NAME}
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+springdoc:
+  api-docs:
+    path: /docs
+  swagger-ui:
+    path: /docs-ui.html
+
+weather:
+  api:
+    url: >
+      http://api.openweathermap.org/data/2.5/weather?q={city}&APPID={appid}
+    app:
+      id: ${WEATHER_API_ID}

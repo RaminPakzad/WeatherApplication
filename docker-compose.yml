@@ -1,0 +1,27 @@
+version: '3'
+services:
+  postgres:
+    image: "postgres:13"
+    container_name: "postgres"
+    env_file:
+      - docker-variables.env
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    environment:
+      - POSTGRES_USER=${WEATHER_DB_USERNAME}
+      - POSTGRES_PASSWORD=${WEATHER_DB_PASSWORD}
+      - POSTGRES_DB=${WEATHER_DB_NAME}
+  weather:
+    container_name: weather
+    env_file:
+      - docker-variables.env
+    build:
+      context: ""
+      dockerfile: Dockerfile
+    image: weather:latest
+    depends_on:
+      - postgres
+    expose:
+      - 8085
+    ports:
+      - 8085:8085
